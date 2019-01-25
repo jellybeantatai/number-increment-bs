@@ -1,25 +1,59 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+
+// ------------------- Button Component ----------------------------------------------
+class Button extends Component{
+  
+  clickAction = () => {
+    this.props.onClickFunction(this.props.incrementValue)
+  }
+  
+  render(){
+    return(
+      <button onClick={this.clickAction}>
+        +{this.props.incrementValue}
+      </button>
+    );
+  }
+}
+
+// ------------------- Label Component ----------------------------------------------
+const Label = (props) => {
+  return(
+    <p>
+      {props.text}
+    </p>
+  );
+}
+
+// ------------------- App Component ----------------------------------------------
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      counter : 0
+    }
+  }
+  
+  handleClick = (incrementValue) => {
+      this.setState((prevState)=>{
+        return{
+        counter : prevState.counter +incrementValue
+        }
+      }
+      )
+    }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <Button incrementValue={1} onClickFunction = {this.handleClick}></Button>
+      <Button incrementValue={5} onClickFunction = {this.handleClick}></Button>
+      <Button incrementValue={10} onClickFunction = {this.handleClick}></Button>
+      <Button incrementValue={100} onClickFunction = {this.handleClick}></Button>
+      <Button incrementValue={1000} onClickFunction = {this.handleClick}></Button>
+      <Label text = {this.state.counter}></Label>
       </div>
     );
   }
