@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 
-// ------------------- Button Component ----------------------------------------------
+// ------------------- Button Component ---------------------------------------------
 class Button extends Component{
   
   clickAction = () => {
